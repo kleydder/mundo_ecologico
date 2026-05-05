@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary: #11d462;
+  --primary-dark: #0fbd49;
+  --primary-light: #e6f9ed;
+  --text-dark: #1f2937;
+  --text-gray: #4b5563;
+  --text-light: #9ca3af;
+  --bg-white: #ffffff;
+  --bg-light: #f3f4f6;
+  --nav-bg: rgba(255, 255, 255, 0.95);
+  --border-color: #e5e7eb;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--text-dark);
+  background-color: var(--bg-white);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  box-shadow: 0 4px 6px rgba(17, 212, 98, 0.2);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+  box-shadow: 0 6px 12px rgba(17, 212, 98, 0.3);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+
+.btn-outline:hover {
+  background-color: var(--primary-light);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+/* Responsive Utilities */
+.sidebar {
+  width: 280px;
+  transform: translateX(0);
+  transition: transform 0.3s ease;
+  z-index: 50;
+}
+
+.main-content {
+  margin-left: 280px;
+  width: calc(100% - 280px);
+  transition: all 0.3s ease;
+}
+
+.mobile-only {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .mobile-only {
+    display: flex !important;
+  }
+  .desktop-only {
+    display: none !important;
+  }
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  .sidebar.open {
+    transform: translateX(0);
+    box-shadow: 10px 0 15px rgba(0,0,0,0.1);
+  }
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+    padding: 1.5rem !important;
+  }
+}
