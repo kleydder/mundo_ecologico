@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Leaf, ArrowRight, Lock, Building } from 'lucide-react';
+import logoImg from '../assets/logo.png';
 
 const LoginPage = () => {
   const [companyId, setCompanyId] = useState('');
@@ -41,7 +42,7 @@ const LoginPage = () => {
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
           <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-dark)' }}>
             <div style={{ width: '48px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <img src="/logo.png" alt="Mundo Ecológico" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+              <img src={logoImg} alt="Mundo Ecológico" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
             </div>
             <span style={{ fontSize: '1.5rem', fontWeight: '800', letterSpacing: '-0.5px' }}>Mundo Ecológico</span>
           </Link>

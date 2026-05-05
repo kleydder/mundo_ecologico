@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Leaf, LogOut, FileText, Download, CheckCircle, Clock, Menu, X } from 'lucide-react';
+import logoImg from '../assets/logo.png';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ const Dashboard = () => {
         <div style={{ padding: '2rem 1.5rem', borderBottom: '1px solid var(--border-color)' }}>
           <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--text-dark)' }}>
             <div style={{ width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <img src="/logo.png" alt="Mundo Ecológico" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+              <img src={logoImg} alt="Mundo Ecológico" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
             </div>
             <span style={{ fontSize: '1.25rem', fontWeight: '800', letterSpacing: '-0.5px' }}>Mundo Ecológico</span>
           </Link>

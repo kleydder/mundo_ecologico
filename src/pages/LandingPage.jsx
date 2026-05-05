@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Leaf, FileCheck, ShieldCheck, Mail, Phone, MapPin, ChevronRight, Menu, X } from 'lucide-react';
+import logoImg from '../assets/logo.png';
 
 const LandingPage = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,7 +36,7 @@ const LandingPage = () => {
             <div style={{
               width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center'
             }}>
-              <img src="/logo.png" alt="Mundo Ecológico" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+              <img src={logoImg} alt="Mundo Ecológico" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
             </div>
             <span style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--text-dark)', letterSpacing: '-0.5px' }}>
               Mundo Ecológico
