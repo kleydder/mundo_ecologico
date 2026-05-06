@@ -2,17 +2,26 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Leaf, ArrowRight, Lock, Building } from 'lucide-react';
 import logoImg from '../assets/logo.png';
+import { useAuth } from '../context/AuthContext';
 
 const LoginPage = () => {
   const [companyId, setCompanyId] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Simulate login
-    if (companyId && password) {
-      navigate('/dashboard');
+    if (login(companyId, password)) {
+      const user = JSON.parse(sessionStorage.getItem('me_user'));
+      if (user.role === 'admin') {
+        navigate('/admin');
+      } else {
+        navigate('/dashboard');
+      }
+    } else {
+      setError('Usuario o contraseña incorrectos');
     }
   };
 
@@ -58,6 +67,11 @@ const LoginPage = () => {
         </div>
 
         <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+          {error && (
+            <div style={{ padding: '0.75rem', backgroundColor: '#fee2e2', color: '#b91c1c', borderRadius: '8px', fontSize: '0.875rem', textAlign: 'center' }}>
+              {error}
+            </div>
+          )}
           <div>
             <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '600', color: 'var(--text-dark)', marginBottom: '0.5rem' }}>
               ID de Empresa

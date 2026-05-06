@@ -1,25 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Leaf, LogOut, FileText, Download, CheckCircle, Clock, Menu, X } from 'lucide-react';
 import logoImg from '../assets/logo.png';
+import { useAuth } from '../context/AuthContext';
+import { getCertificatesByClient } from '../services/db';
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const { user, logout } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('comercializacion');
+  const [certificates, setCertificates] = useState([]);
 
-  // Mock data for certificates
-  const certificates = [
-    { id: 'CERT-2023-0891', date: '15/10/2023', type: 'Residuos Orgánicos', status: 'disponible', category: 'comercializacion' },
-    { id: 'CERT-2023-0892', date: '22/10/2023', type: 'Residuos Inorgánicos', status: 'disponible', category: 'comercializacion' },
-    { id: 'CERT-2023-0905', date: '05/11/2023', type: 'Residuos Peligrosos', status: 'pendiente', category: 'no_aprovechable' },
-    { id: 'CERT-2023-0912', date: '12/11/2023', type: 'Lodos Industriales', status: 'disponible', category: 'aguas_residuales' },
-    { id: 'CERT-2023-0924', date: '18/11/2023', type: 'Residuos Generales', status: 'pendiente', category: 'no_aprovechable' },
-  ];
+  useEffect(() => {
+    if (user) {
+      setCertificates(getCertificatesByClient(user.username));
+    }
+  }, [user]);
 
   const filteredCertificates = certificates.filter(c => c.category === activeTab);
 
   const handleLogout = () => {
+    logout();
     navigate('/');
   };
 
@@ -60,7 +62,7 @@ const Dashboard = () => {
               Bienvenido
             </p>
             <p style={{ fontWeight: '700', color: 'var(--text-dark)', fontSize: '1.1rem' }}>
-              Empresa Cliente S.A.
+              Cliente: {user?.username}
             </p>
           </div>
 
