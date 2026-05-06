@@ -57,13 +57,18 @@ const Dashboard = () => {
         </div>
 
         <div style={{ padding: '2rem 1.5rem', flex: 1 }}>
-          <div style={{ marginBottom: '2rem' }}>
-            <p style={{ fontSize: '0.85rem', color: 'var(--text-light)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '0.5rem' }}>
-              Bienvenido
-            </p>
-            <p style={{ fontWeight: '700', color: 'var(--text-dark)', fontSize: '1.1rem' }}>
-              Cliente: {user?.username}
-            </p>
+          <div style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            {user?.photoUrl && (
+              <img src={user.photoUrl} alt="Logo Empresa" style={{ width: '48px', height: '48px', borderRadius: '8px', objectFit: 'cover' }} />
+            )}
+            <div>
+              <p style={{ fontSize: '0.85rem', color: 'var(--text-light)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '0.25rem' }}>
+                Bienvenido
+              </p>
+              <p style={{ fontWeight: '700', color: 'var(--text-dark)', fontSize: '1.1rem', lineHeight: '1.2' }}>
+                {user?.razonSocial || user?.username}
+              </p>
+            </div>
           </div>
 
           <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
